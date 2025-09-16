@@ -5,33 +5,53 @@ int main() {
     std::cout << "=== Fraction Calculator - cem.tomas3 ===" << std::endl;
     std::cout << "========================================" << std::endl;
     
-    Fraction f1(1, 2);
-    Fraction f2(1, 3);
-    Fraction f3(3, 4);
-    Fraction f4(2, 5);
+    int num1, den1, num2, den2;
+    char operation;
     
-    std::cout << "1/2 + 1/3 = ";
-    Fraction result = f1.add(f2);
+    // إدخال الكسر الأول
+    std::cout << "Enter first fraction (numerator denominator): ";
+    std::cin >> num1 >> den1;
+    
+    // إدخال العملية
+    std::cout << "Enter operation (+, -, *, /): ";
+    std::cin >> operation;
+    
+    // إدخال الكسر الثاني  
+    std::cout << "Enter second fraction (numerator denominator): ";
+    std::cin >> num2 >> den2;
+    
+    // إنشاء الكسور
+    Fraction f1(num1, den1);
+    Fraction f2(num2, den2);
+    Fraction result;
+    
+    // تنفيذ العملية
+    switch(operation) {
+        case '+':
+            result = f1.add(f2);
+            break;
+        case '-':
+            result = f1.subtract(f2);
+            break;
+        case '*':
+            result = f1.multiply(f2);
+            break;
+        case '/':
+            result = f1.divide(f2);
+            break;
+        default:
+            std::cout << "Invalid operation!" << std::endl;
+            return 1;
+    }
+    
+    // عرض النتيجة
+    std::cout << "Result: ";
+    f1.display();
+    std::cout << " " << operation << " ";
+    f2.display(); 
+    std::cout << " = ";
     result.display();
     std::cout << std::endl;
-    
-    std::cout << "3/4 - 2/5 = ";
-    result = f3.subtract(f4);
-    result.display();
-    std::cout << std::endl;
-    
-    std::cout << "1/2 * 3/4 = ";
-    result = f1.multiply(f3);
-    result.display();
-    std::cout << std::endl;
-    
-    std::cout << "1/2 / 1/3 = ";
-    result = f1.divide(f2);
-    result.display();
-    std::cout << std::endl;
-    
-    std::cout << "========================================" << std::endl;
-    std::cout << "Program executed successfully!" << std::endl;
     
     return 0;
 }
