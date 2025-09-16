@@ -1,29 +1,20 @@
-name: C++ CI/CD Pipeline - cem.tomas3
-
-on: 
-  workflow_dispatch:
+name: C++ CI/CD Pipeline
+on: workflow_dispatch
 
 jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
-    - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y g++ doxygen graphviz
-      
-    - name: Compile program
-      run: g++ -o fraction_app fraction.cpp main.cpp
-      
-    - name: Compile tests
-      run: g++ -o test_app fraction.cpp test.cpp
-      
-    - name: Run tests
-      run: ./test_app
-      
-    - name: Generate docs
-      run: doxygen Doxyfile
-      
-    - name: Success message
-      run: echo "✅ All tests passed! CI/CD is working!"
+      - name: Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # ✅ الإصدار الصحيح
+        
+      - name: Install tools
+        run: sudo apt-get update && sudo apt-get install -y g++ doxygen graphviz
+        
+      - name: Compile and test
+        run: |
+          g++ -o fraction_app fraction.cpp main.cpp
+          g++ -o test_app fraction.cpp test.cpp
+          ./test_app
+          doxygen Doxyfile
+          echo "✅ All tests passed! Project: cem.tomas3"
