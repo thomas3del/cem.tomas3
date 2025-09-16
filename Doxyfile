@@ -1,0 +1,6 @@
+﻿PROJECT_NAME = "Fraction Calculator - cem.tomas3"
+PROJECT_NUMBER = 1.0
+OUTPUT_DIRECTORY = docs
+EXTRACT_ALL = YES
+GENERATE_HTML = YES
+INPUT = fraction.h fraction.cpp main.cpp test.cpp
