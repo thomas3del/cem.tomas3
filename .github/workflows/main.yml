@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@8e5e7e5ab8b54d4dd9b10c3d7c5bb1ab5ce7cc0c
       
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y g++ doxygen graphviz
