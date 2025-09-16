@@ -1,6 +1,10 @@
-﻿name: C++ CI/CD Pipeline - cem.tomas3
+name: C++ CI/CD Pipeline - cem.tomas3
 
-on: [push, pull_request]
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build-and-test:
@@ -13,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y g++ doxygen graphviz
+        sudo apt-get install -y g++ doxygen graphviz docker.io
 
     - name: Compile main application
       run: g++ -o fraction_app fraction.cpp main.cpp
@@ -28,7 +32,13 @@ jobs:
       run: doxygen Doxyfile
 
     - name: Build Docker image
-      run: docker build -t fraction-app-cem-tomas3 .
+      run: docker build -t fraction-app .
 
     - name: Run Docker container
-      run: docker run --rm fraction-app-cem-tomas3
+      run: docker run --rm fraction-app
+
+    - name: Upload documentation
+      uses: actions/upload-artifact@v4
+      with:
+        name: documentation
+        path: docs/
